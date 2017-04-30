@@ -131,15 +131,15 @@ public class LolSOAPImplTest{
     @GET
     @Path("/hentbruger/{username}/{password}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String hentBruger(@PathParam("username") String username, @PathParam("password") String pass) {
+    public boolean hentBruger(@PathParam("username") String username, @PathParam("password") String pass) {
     String requestedUser = soapHandlerService.soapHandler.hentBruger(username, pass);
        if (requestedUser != null){
            
-             return requestedUser;
+             return true;
         }
         else{
             
-            return "Wrong User Parameters";        }
+            return false;        }
         
     }
 
