@@ -72,9 +72,9 @@ public class LolSOAPImplTest{
    @Path("/getplayers/{gameID}")
    @Produces(MediaType.APPLICATION_JSON)
     public String getUsernames(@PathParam("gameID") UUID gameId) {
-        Set<String> names = soapHandlerService.soapHandler.getUsernames(gameId);
-        String[] nameArray =(String[]) names.toArray();
-        String result = gsonConverter.toJson(nameArray);
+        String[] names = soapHandlerService.soapHandler.getUsernames(gameId);
+        
+        String result = gsonConverter.toJson(names);
         return result;
     }
 
