@@ -25,6 +25,7 @@ import javax.xml.ws.Service;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import com.google.gson.*;
+import static lolsoap.LolSOAPImplTest.soapHandlerService;
 /**
  *
  * @author Magnus
@@ -143,6 +144,37 @@ public class LolSOAPImplTest{
         
     }
 
+   @GET
+   @Path("(/getplayersgames/{username}")
+   @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+    public String getPlayersGames(@PathParam("username") String username) {
+         UUID[] uuids = soapHandlerService.soapHandler.getPlayersGames(username); 
+        
+       
+        String jsonArray = gsonConverter.toJson(uuids);
+   
+        System.out.println("Array er : " + uuids.length + " langt");
+         return jsonArray;
+    }
     
+
+   @GET
+   @Path("(/isgamestarted/{username}")
+   @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+    public boolean isGameStarted(@PathParam("username") String username) {
+        boolean bool = soapHandlerService.soapHandler.isGameStarted(username);
+    return bool;
+    }
+
+   @GET
+   @Path("(/getwinner/{gameid}")
+   @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+    public String getWinner(@PathParam("gameid") UUID gameId) {
+        
+        String winner =  soapHandlerService.soapHandler.getWinner(gameId);
+        return winner;
+    }
+
     
 }
+
