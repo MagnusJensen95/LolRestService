@@ -122,9 +122,8 @@ public class LolSOAPImplTest{
          return soapHandlerService.soapHandler.guessChampion(user, passedGuess);
     }
 
-   @POST
+   @GET
    @Path("/skip/{username}")
-   @Consumes(MediaType.TEXT_PLAIN)
     public void skipChampion(@PathParam("username") String username) {
           soapHandlerService.soapHandler.skipChampion(username);
     }
