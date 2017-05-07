@@ -52,8 +52,8 @@ public class LolSOAPImplTest {
    @GET
    @Path("/creategame/{username}")
    @Produces(MediaType.TEXT_PLAIN)
-    public UUID createNewGame(@PathParam("username") String username) {
-        return soapHandlerService.soapHandler.createNewGame(username);
+    public String createNewGame(@PathParam("username") String username) {
+        return soapHandlerService.soapHandler.createNewGame(username).toString();
     }
 
     @GET
@@ -197,19 +197,19 @@ public class LolSOAPImplTest {
     }
 
     @GET
-    @Path("/getScore/{gameID}/{username}")
+    @Path("/gettimetaken/{gameID}/{username}")
     public long getTimeTaken(@PathParam("gameID")UUID gameId,@PathParam("username") String username) {
         return soapHandlerService.soapHandler.getTimeTaken(gameId, username); 
     }
 
     @GET
-    @Path("/getScore/{gameID}/{number}")
+    @Path("/setnumberofchamps/{gameID}/{number}")
     public void setNumberOfChamps(@PathParam("gameID")UUID gameId,@PathParam("number") int number) {
     soapHandlerService.soapHandler.setNumberOfChamps(gameId, number); 
     }
 
     @GET
-    @Path("/getScore/{gameID}/{username}")
+    @Path("/playerdoneguessing/{gameID}/{username}")
     public boolean playerDoneGuessing(@PathParam("gameID")UUID gameId,@PathParam("usrename") String username) {
       return soapHandlerService.soapHandler.playerDoneGuessing(gameId, username); 
     }
