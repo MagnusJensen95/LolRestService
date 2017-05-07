@@ -32,7 +32,7 @@ import static lolsoap.LolSOAPImplTest.soapHandlerService;
  */
 
 @Path("lolsoapaccess")
-public class LolSOAPImplTest{
+public class LolSOAPImplTest {
     
     
      static LolSoapImplementation soapHandlerService;
@@ -92,9 +92,10 @@ public class LolSOAPImplTest{
     }
 
    @GET
-   @Path("/isgamedone/{username}")
-    public boolean isGameDone(@PathParam("username") String username) {
-         return soapHandlerService.soapHandler.isGameDone(username);
+   @Path("/isgamedone/{gameID}")
+    public boolean isGameDone(@PathParam("gameID") UUID game) {
+       
+         return soapHandlerService.soapHandler.isGameDone(game);
     }
 
     @GET
@@ -172,6 +173,45 @@ public class LolSOAPImplTest{
         
         String winner =  soapHandlerService.soapHandler.getWinner(gameId);
         return winner;
+    }
+
+    
+    @GET
+    @Path("/findallgames")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String findAllGames() {
+        UUID[] uuids = soapHandlerService.soapHandler.findAllGames(); 
+        
+       
+        String jsonArray = gsonConverter.toJson(uuids);
+   
+        System.out.println("Array er : " + uuids.length + " langt");
+         return jsonArray;
+    }
+    
+    
+    @GET
+    @Path("/getScore/{gameID}/{username}")
+    public int getScore(@PathParam("gameID")UUID gameId,@PathParam("username") String username) {
+       return soapHandlerService.soapHandler.getScore(gameId, username); 
+    }
+
+    @GET
+    @Path("/getScore/{gameID}/{username}")
+    public long getTimeTaken(@PathParam("gameID")UUID gameId,@PathParam("username") String username) {
+        return soapHandlerService.soapHandler.getTimeTaken(gameId, username); 
+    }
+
+    @GET
+    @Path("/getScore/{gameID}/{number}")
+    public void setNumberOfChamps(@PathParam("gameID")UUID gameId,@PathParam("number") int number) {
+    soapHandlerService.soapHandler.setNumberOfChamps(gameId, number); 
+    }
+
+    @GET
+    @Path("/getScore/{gameID}/{username}")
+    public boolean playerDoneGuessing(@PathParam("gameID")UUID gameId,@PathParam("usrename") String username) {
+      return soapHandlerService.soapHandler.playerDoneGuessing(gameId, username); 
     }
 
     
