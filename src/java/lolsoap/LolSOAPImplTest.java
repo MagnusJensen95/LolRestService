@@ -118,7 +118,7 @@ public class LolSOAPImplTest {
     }
 
    @GET
-   @Path("/guesschamp/{username}/{guess}")
+   @Path("/guesschamp/{guess}/{username}")
     public boolean guessChampion(@PathParam("username") String user,@PathParam("guess") String passedGuess) {
          return soapHandlerService.soapHandler.guessChampion(user, passedGuess);
     }
@@ -130,7 +130,7 @@ public class LolSOAPImplTest {
     }
     
     @GET
-    @Path("/hentbruger/{username}/{password}")
+    @Path("/hentbruger/{password}/{username}")
     @Produces(MediaType.TEXT_PLAIN)
     public boolean hentBruger(@PathParam("username") String username, @PathParam("password") String pass) {
     String requestedUser = soapHandlerService.soapHandler.hentBruger(username, pass);
