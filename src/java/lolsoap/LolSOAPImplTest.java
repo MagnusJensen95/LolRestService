@@ -145,7 +145,7 @@ public class LolSOAPImplTest {
     }
 
    @GET
-   @Path("(/getplayersgames/{username}")
+   @Path("/getplayersgames/{username}")
    @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     public String getPlayersGames(@PathParam("username") String username) {
          UUID[] uuids = soapHandlerService.soapHandler.getPlayersGames(username); 
@@ -159,15 +159,15 @@ public class LolSOAPImplTest {
     
 
    @GET
-   @Path("(/isgamestarted/{username}")
-   @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+   @Path("/isgamestarted/{username}")
+   @Produces(MediaType.TEXT_PLAIN)
     public boolean isGameStarted(@PathParam("username") String username) {
         boolean bool = soapHandlerService.soapHandler.isGameStarted(username);
     return bool;
     }
 
    @GET
-   @Path("(/getwinner/{gameid}")
+   @Path("/getwinner/{gameid}")
    @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     public String getWinner(@PathParam("gameid") UUID gameId) {
         
@@ -191,7 +191,7 @@ public class LolSOAPImplTest {
     
     
     @GET
-    @Path("/getScore/{gameID}/{username}")
+    @Path("/getscore/{gameID}/{username}")
     public int getScore(@PathParam("gameID")UUID gameId,@PathParam("username") String username) {
        return soapHandlerService.soapHandler.getScore(gameId, username); 
     }
@@ -210,7 +210,7 @@ public class LolSOAPImplTest {
 
     @GET
     @Path("/playerdoneguessing/{gameID}/{username}")
-    public boolean playerDoneGuessing(@PathParam("gameID")UUID gameId,@PathParam("usrename") String username) {
+    public boolean playerDoneGuessing(@PathParam("gameID")UUID gameId,@PathParam("username") String username) {
       return soapHandlerService.soapHandler.playerDoneGuessing(gameId, username); 
     }
 
